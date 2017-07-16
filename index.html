@@ -26,6 +26,10 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+
 </head>
 <body>
 
@@ -34,7 +38,7 @@
   <div class="container">
     <div class="row" style="margin-top:5%">
       <div class="four columns">
-        <h4>Portfolio</h4>
+        <h2>Portfolio</h2>
       </div>
       <div class="eight columns" style="text-align: right" id="menu">
         <ul style="list-style-type: none">
@@ -48,6 +52,28 @@
           <li>2016</li>
           <li>2017</li>
         </ul>
+      </div>
+    </div>
+    <div class="row" style="margin-top:5%">
+      <div class="twelve columns" id="map" style="height:400px;"></div>
+    </div>
+
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZnJpZ2lkbGlnaHQiLCJhIjoiczg4X2VuYyJ9.yMtOhBeGB6hsQ5PogQT-_A';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/outdoors-v10', //stylesheet location
+        center: [-74.50, 40], // starting position
+        zoom: 9 // starting zoom
+    });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+    </script>
+
+    <div class="row" style="margin-top:5%">
+      <div class="twelve columns">
+        <h4>Portfolio Images Here</h4>
       </div>
     </div>
   </div>

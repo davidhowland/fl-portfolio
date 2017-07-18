@@ -81,19 +81,44 @@ title: Portfolio
       <div class="twelve columns" id="portfolio-map">
       </div>
       <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoiZnJpZ2lkbGlnaHQiLCJhIjoiczg4X2VuYyJ9.yMtOhBeGB6hsQ5PogQT-_A';
-      var map = new mapboxgl.Map({
-          container: 'portfolio-map', // container id
-          style: 'mapbox://styles/mapbox/outdoors-v10', //stylesheet location
-          center: [{{ page.longitude }}, {{ page.latitude }}], // starting position
-          zoom: 9 // starting zoom
-      });
+mapboxgl.accessToken = 'pk.eyJ1IjoiZnJpZ2lkbGlnaHQiLCJhIjoiczg4X2VuYyJ9.yMtOhBeGB6hsQ5PogQT-_A';
 
-      new mapboxgl.Marker()
-      .setLngLat([{{ page.longitude }}, {{ page.latitude }}])
-      .addTo(map);
+var map = new mapboxgl.Map({
+    container: 'portfolio-map',
+    style: 'mapbox://styles/mapbox/outdoors-v10',
+    center: [{{ page.longitude }}, {{ page.latitude }}], // starting position
+    zoom: 12 // starting zoom
+});
 
-      </script>
+map.on('load', () => {
+    map.loadImage('/images/marker-15.png', (error, image) => {
+        if (error) throw error;
+        map.addImage('marker', image);
+        map.addLayer({
+            "id": "points",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [{{ page.longitude }}, {{ page.latitude }}]
+                        }
+                    }]
+                }
+            },
+            "layout": {
+                "icon-image": "marker",
+                "icon-size": .5
+            }
+        });
+    });
+});
+
+</script>
     </div>
   </div>
 

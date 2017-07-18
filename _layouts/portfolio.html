@@ -22,8 +22,8 @@ title: Portfolio
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="{{site.url}}/css/normalize.css">
+  <link rel="stylesheet" href="{{site.url}}/css/skeleton.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -58,31 +58,67 @@ title: Portfolio
       </div>
     </div>
     <div class="row">
-      <div class="twelve columns" id="map" style="height:400px;"></div>
-    </div>
-
-    <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZnJpZ2lkbGlnaHQiLCJhIjoiczg4X2VuYyJ9.yMtOhBeGB6hsQ5PogQT-_A';
-    var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/outdoors-v10', //stylesheet location
-        center: [-74.50, 40], // starting position
-        zoom: 9 // starting zoom
-    });
-    </script>
-
-    <div class="row" style="margin-top:5%">
-      <div class="twelve columns">
-        <h4>Portfolio Images Here</h4>
-        <ul>
-          {% for post in site.posts %}
-          <li>
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            {{ post.excerpt }}
-          </li>
-          {% endfor %}
-        </ul>
+      <div class="twelve columns" id="portfolio-header">
+        <h4>{{ page.title }}</h4>
+        <p>{{ page.description }}
       </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns" id="portfolio-image">
+        <img src="{{site.url}}/images/{{page.image}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns" id="meta">
+        <p>Keywords:
+          {% for tag in page.tags %}
+            {{ tag }}
+          {% endfor %}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns" id="portfolio-map">
+      </div>
+      <script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZnJpZ2lkbGlnaHQiLCJhIjoiczg4X2VuYyJ9.yMtOhBeGB6hsQ5PogQT-_A';
+
+var map = new mapboxgl.Map({
+    container: 'portfolio-map',
+    style: 'mapbox://styles/mapbox/outdoors-v10',
+    center: [{{ page.longitude }}, {{ page.latitude }}], // starting position
+    zoom: 12 // starting zoom
+});
+
+map.on('load', () => {
+    map.loadImage('/images/marker-15.png', (error, image) => {
+        if (error) throw error;
+        map.addImage('marker', image);
+        map.addLayer({
+            "id": "points",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [{{ page.longitude }}, {{ page.latitude }}]
+                        }
+                    }]
+                }
+            },
+            "layout": {
+                "icon-image": "marker",
+                "icon-size": .5
+            }
+        });
+    });
+});
+
+</script>
     </div>
   </div>
 

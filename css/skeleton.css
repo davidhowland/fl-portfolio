@@ -32,6 +32,10 @@
   display: inline;
 }
 
+#portfolio-image img {
+  width: 100%;
+}
+
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {

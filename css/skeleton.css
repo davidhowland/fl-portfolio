@@ -36,6 +36,9 @@
   width: 100%;
 }
 
+#nav a {
+  text-decoration: none;
+}
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {

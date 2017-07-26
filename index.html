@@ -28,6 +28,13 @@ title: Portfolio
         </ul>
       </div>
     </div>
+    <div class="row">
+      {% for post in site.posts %}
+      <div class="four columns">
+        <a href="{{ post.url }}"><img width="100%" src="/images/{{ post.image }}"></a>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 
 <!-- End Document

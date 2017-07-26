@@ -1,66 +1,10 @@
 ---
 title: Portfolio
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Your page title here :)</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-  <!-- Scripts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
-
-</head>
-<body>
-
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row" style="margin-top:5%">
-      <div class="four columns">
-        <h2>Portfolio</h2>
-      </div>
-      <div class="eight columns" style="text-align: right" id="menu">
-        <ul style="list-style-type: none">
-          <li>2009</li>
-          <li>2010</li>
-          <li>2011</li>
-          <li>2012</li>
-          <li>2013</li>
-          <li>2014</li>
-          <li>2015</li>
-          <li>2016</li>
-          <li>2017</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="twelve columns" id="map" style="height:400px;"></div>
-    </div>
-
+{% include header.html %}
+<div class="row">
+  <div class="twelve columns" id="map" style="height:400px;"></div>
+</div>
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZnJpZ2lkbGlnaHQiLCJhIjoiczg4X2VuYyJ9.yMtOhBeGB6hsQ5PogQT-_A';
     var map = new mapboxgl.Map({
@@ -70,7 +14,7 @@ title: Portfolio
         zoom: 9 // starting zoom
     });
     </script>
-
+<!--
     <div class="row" style="margin-top:5%">
       <div class="twelve columns">
         <h4>Portfolio Images Here</h4>
@@ -83,6 +27,13 @@ title: Portfolio
           {% endfor %}
         </ul>
       </div>
+    </div> -->
+    <div class="row" style="margin-top:5%">
+      {% for post in site.posts %}
+      <div class="four columns">
+        <a href="{{ post.url }}"><img width="100%" src="/images/{{ post.image }}"></a>
+      </div>
+      {% endfor %}
     </div>
   </div>
 

@@ -14,7 +14,7 @@ title: Portfolio
         zoom: 9 // starting zoom
     });
     </script>
-
+<!--
     <div class="row" style="margin-top:5%">
       <div class="twelve columns">
         <h4>Portfolio Images Here</h4>
@@ -27,8 +27,8 @@ title: Portfolio
           {% endfor %}
         </ul>
       </div>
-    </div>
-    <div class="row">
+    </div> -->
+    <div class="row" style="margin-top:5%">
       {% for post in site.posts %}
       <div class="four columns">
         <a href="{{ post.url }}"><img width="100%" src="/images/{{ post.image }}"></a>

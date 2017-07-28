@@ -31,7 +31,7 @@ title: Portfolio
     <div class="row" style="margin-top:5%">
       {% for post in site.posts %}
       <div class="four columns">
-        <a href="{{ post.url }}"><img width="100%" src="{{ site.url }}{{ site.baseurl }}/images/{{ post.image }}"></a>
+        <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}"><img width="100%" src="{{ site.url }}{{ site.baseurl }}/images/{{ post.image }}"></a>
       </div>
       {% endfor %}
     </div>

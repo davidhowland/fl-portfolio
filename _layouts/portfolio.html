@@ -36,7 +36,7 @@ var map = new mapboxgl.Map({
 });
 
 map.on('load', () => {
-    map.loadImage('/images/marker-15.png', (error, image) => {
+    map.loadImage('{{ site.baseurl }}/images/marker-15.png', (error, image) => {
         if (error) throw error;
         map.addImage('marker', image);
         map.addLayer({
